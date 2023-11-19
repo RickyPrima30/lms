@@ -1,12 +1,12 @@
 import Image from "next/image";
 
 export const Logo = () => {
-    return (
-        <Image
-        height={60}
-        width={60}
-        alt="lms-logo"
-        src="/logo.svg"
-        />
-    )
+  return (
+    <Image
+      height={130}
+      width={130}
+      alt="logo"
+      src="/logo.svg"
+    />
+  )
 }
