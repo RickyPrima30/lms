@@ -75,7 +75,7 @@ const CourseIdPage = async ({
     <>
       {!course.isPublished && (
         <Banner
-          label="This course is unpublished. It will not be visible to the students."
+          label="Course ini belum di public. Tidak akan bisa dilihat oleh student"
         />
       )}
       <div className="p-6">
