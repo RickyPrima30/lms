@@ -51,10 +51,10 @@ const CreatePage = () => {
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
         <h1 className="text-2xl">
-          Name your course
+          Apa nama Course mu
         </h1>
         <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can change this later.
+          Kamu ingin memberi nama apa pada Course mu? Jangan khawatir, Anda dapat mengubahnya nanti.
         </p>
         <Form {...form}>
           <form
@@ -72,12 +72,12 @@ const CreatePage = () => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Advanced web development'"
+                      placeholder="contoh: 'Menjadi MERN Developer'"
                       {...field}
                     />
                   </FormControl>
                   <FormDescription>
-                    What will you teach in this course?
+                    Apa yang akan kamu ajarkan pada Course ini?
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

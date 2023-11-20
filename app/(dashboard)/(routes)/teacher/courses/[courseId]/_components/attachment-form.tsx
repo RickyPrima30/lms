@@ -35,7 +35,7 @@ export const AttachmentForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.post(`/api/courses/${courseId}/attachments`, values);
-      toast.success("Course updated");
+      toast.success("Course ter-update");
       toggleEdit();
       router.refresh();
     } catch {
@@ -76,7 +76,7 @@ export const AttachmentForm = ({
         <>
           {initialData.attachments.length === 0 && (
             <p className="text-sm mt-2 text-slate-500 italic">
-              No attachments yet
+              Belum ada lampiran
             </p>
           )}
           {initialData.attachments.length > 0 && (

@@ -5,7 +5,7 @@ interface GetChapterProps {
   userId: string;
   courseId: string;
   chapterId: string;
-};
+}
 
 export const getChapter = async ({
   userId,
@@ -13,15 +13,6 @@ export const getChapter = async ({
   chapterId,
 }: GetChapterProps) => {
   try {
-    const purchase = await db.purchase.findUnique({
-      where: {
-        userId_courseId: {
-          userId,
-          courseId,
-        }
-      }
-    });
-
     const course = await db.course.findUnique({
       where: {
         isPublished: true,
@@ -29,14 +20,14 @@ export const getChapter = async ({
       },
       select: {
         price: true,
-      }
+      },
     });
 
     const chapter = await db.chapter.findUnique({
       where: {
         id: chapterId,
         isPublished: true,
-      }
+      },
     });
 
     if (!chapter || !course) {
@@ -47,19 +38,12 @@ export const getChapter = async ({
     let attachments: Attachment[] = [];
     let nextChapter: Chapter | null = null;
 
-    if (purchase) {
-      attachments = await db.attachment.findMany({
-        where: {
-          courseId: courseId
-        }
-      });
-    }
-
-    if (chapter.isFree || purchase) {
+    // Check if the chapter is free or user has already purchased
+    if (chapter.isFree) {
       muxData = await db.muxData.findUnique({
         where: {
           chapterId: chapterId,
-        }
+        },
       });
 
       nextChapter = await db.chapter.findFirst({
@@ -68,11 +52,11 @@ export const getChapter = async ({
           isPublished: true,
           position: {
             gt: chapter?.position,
-          }
+          },
         },
         orderBy: {
           position: "asc",
-        }
+        },
       });
     }
 
@@ -81,8 +65,8 @@ export const getChapter = async ({
         userId_chapterId: {
           userId,
           chapterId,
-        }
-      }
+        },
+      },
     });
 
     return {
@@ -92,10 +76,10 @@ export const getChapter = async ({
       attachments,
       nextChapter,
       userProgress,
-      purchase,
+      purchase: null, // Set purchase to null since we don't want to include it
     };
   } catch (error) {
-    console.log("[GET_CHAPTER]", error);
+    console.error("[GET_CHAPTER]", error);
     return {
       chapter: null,
       course: null,
@@ -104,6 +88,6 @@ export const getChapter = async ({
       nextChapter: null,
       userProgress: null,
       purchase: null,
-    }
+    };
   }
-}
+};

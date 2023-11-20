@@ -54,7 +54,7 @@ export const DescriptionForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}`, values);
-      toast.success("Course updated");
+      toast.success("Course ter-update");
       toggleEdit();
       router.refresh();
     } catch {
@@ -99,7 +99,7 @@ export const DescriptionForm = ({
                   <FormControl>
                     <Textarea
                       disabled={isSubmitting}
-                      placeholder="e.g. 'This course is about...'"
+                      placeholder="contoh: 'Course ini tentang....'"
                       {...field}
                     />
                   </FormControl>

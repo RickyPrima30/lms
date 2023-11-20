@@ -119,7 +119,7 @@ export const ChaptersForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="contoh: 'Belajar web sesi 1'"
                       {...field}
                     />
                   </FormControl>
@@ -151,7 +151,7 @@ export const ChaptersForm = ({
       )}
       {!isCreating && (
         <p className="text-xs text-muted-foreground mt-4">
-          Drag and drop to reorder the chapters
+          Drag and drop untuk menyusun ulang bab-babnya
         </p>
       )}
     </div>

@@ -59,7 +59,6 @@ const CourseIdPage = async ({
     course.title,
     course.description,
     course.imageUrl,
-    course.price,
     course.categoryId,
     course.chapters.some(chapter => chapter.isPublished),
   ];
@@ -75,7 +74,7 @@ const CourseIdPage = async ({
     <>
       {!course.isPublished && (
         <Banner
-          label="Course ini belum di public. Tidak akan bisa dilihat oleh student"
+          label="Course ini belum di public. Tidak akan bisa dilihat oleh client"
         />
       )}
       <div className="p-6">
@@ -85,7 +84,7 @@ const CourseIdPage = async ({
               Course setup
             </h1>
             <span className="text-sm text-slate-700">
-              Complete all fields {completionText}
+              Lengkapi semua atribut {completionText}
             </span>
           </div>
           <Actions
@@ -99,7 +98,7 @@ const CourseIdPage = async ({
             <div className="flex items-center gap-x-2">
               <IconBadge icon={LayoutDashboard} />
               <h2 className="text-xl">
-                Customize your course
+                Kustomisasi Course mu
               </h2>
             </div>
             <TitleForm
@@ -138,21 +137,9 @@ const CourseIdPage = async ({
             </div>
             <div>
               <div className="flex items-center gap-x-2">
-                <IconBadge icon={CircleDollarSign} />
-                <h2 className="text-xl">
-                  Sell your course
-                </h2>
-              </div>
-              <PriceForm
-                initialData={course}
-                courseId={course.id}
-              />
-            </div>
-            <div>
-              <div className="flex items-center gap-x-2">
                 <IconBadge icon={File} />
                 <h2 className="text-xl">
-                  Resources & Attachments
+                  Sumber Daya & Lampiran
                 </h2>
               </div>
               <AttachmentForm

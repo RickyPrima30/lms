@@ -52,7 +52,7 @@ export const ChapterTitleForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Chapter updated");
+      toast.success("Chapter ter-update");
       toggleEdit();
       router.refresh();
     } catch {
@@ -94,7 +94,7 @@ export const ChapterTitleForm = ({
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Introduction to the course'"
+                      placeholder="contoh: 'Course web dev'"
                       {...field}
                     />
                   </FormControl>

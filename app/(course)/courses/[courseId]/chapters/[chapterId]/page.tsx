@@ -40,22 +40,15 @@ const ChapterIdPage = async ({
     return redirect("/")
   }
 
-
-  const isLocked = !chapter.isFree && !purchase;
-  const completeOnEnd = !!purchase && !userProgress?.isCompleted;
+  const isLocked = !chapter.isFree;
+  const completeOnEnd = !!purchase && userProgress?.isCompleted;
 
   return ( 
     <div>
-      {userProgress?.isCompleted && (
+      {userProgress && userProgress.isCompleted && (
         <Banner
           variant="success"
-          label="You already completed this chapter."
-        />
-      )}
-      {isLocked && (
-        <Banner
-          variant="warning"
-          label="You need to purchase this course to watch this chapter."
+          label="Kamu berhasil menyelesaikan Course ini"
         />
       )}
       <div className="flex flex-col max-w-4xl mx-auto pb-20">
@@ -66,7 +59,6 @@ const ChapterIdPage = async ({
             courseId={params.courseId}
             nextChapterId={nextChapter?.id}
             playbackId={muxData?.playbackId!}
-            isLocked={isLocked}
             completeOnEnd={completeOnEnd}
           />
         </div>
@@ -75,19 +67,12 @@ const ChapterIdPage = async ({
             <h2 className="text-2xl font-semibold mb-2">
               {chapter.title}
             </h2>
-            {purchase ? (
               <CourseProgressButton
                 chapterId={params.chapterId}
                 courseId={params.courseId}
                 nextChapterId={nextChapter?.id}
-                isCompleted={!!userProgress?.isCompleted}
+                isCompleted={userProgress?.isCompleted || false}
               />
-            ) : (
-              <CourseEnrollButton
-                courseId={params.courseId}
-                price={course.price!}
-              />
-            )}
           </div>
           <Separator />
           <div>

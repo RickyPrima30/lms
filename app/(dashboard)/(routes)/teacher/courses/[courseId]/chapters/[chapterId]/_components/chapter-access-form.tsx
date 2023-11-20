@@ -57,7 +57,7 @@ export const ChapterAccessForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       await axios.patch(`/api/courses/${courseId}/chapters/${chapterId}`, values);
-      toast.success("Chapter updated");
+      toast.success("Chapter ter-update");
       toggleEdit();
       router.refresh();
     } catch {
@@ -86,9 +86,9 @@ export const ChapterAccessForm = ({
           !initialData.isFree && "text-slate-500 italic"
         )}>
           {initialData.isFree ? (
-            <>This chapter is free for preview.</>
+            <>Chapter ini terbuka</>
           ) : (
-            <>This chapter is not free.</>
+            <>Chapter ini tidak terbuka.</>
           )}
         </p>
       )}
@@ -111,7 +111,7 @@ export const ChapterAccessForm = ({
                   </FormControl>
                   <div className="space-y-1 leading-none">
                     <FormDescription>
-                      Check this box if you want to make this chapter free for preview
+                      Check box ini jika kamu ingin chapter ini terbuka
                     </FormDescription>
                   </div>
                 </FormItem>
